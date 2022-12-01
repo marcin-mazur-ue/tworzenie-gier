@@ -60,6 +60,16 @@ public class Player : MonoBehaviour
 			attack();
 	}
 
+	public void heal(int amount)
+	{
+		if(current_health + amount >= health)
+			current_health = health;
+		else
+			current_health += amount;
+		update_health_text(current_health);
+		update_health_bar();
+	}
+
 	public void receive_damage(int amount)
 	{
 		current_health -= amount;
