@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private BoxCollider attack_area;
 	[SerializeField] private Text health_text;
 	[SerializeField] private Text attack_cooldown_text;
+	[SerializeField] private Slider health_bar;
 
 	void Start()
 	{
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 		current_health = health;
 		current_attack_cooldown = 0.0f;
 		update_health_text(current_health);
+		update_health_bar();
 	}
 
 	void FixedUpdate()
@@ -35,7 +37,9 @@ public class Player : MonoBehaviour
 		float new_direction = Input.GetAxis("Horizontal");
 		if(new_direction * direction < 0.0f)
 		{
-			transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
+			Vector3 rotation = new Vector3(0.0f, 180.0f, 0.0f);
+			transform.Rotate(rotation);
+			health_bar.transform.Rotate(rotation);
 			direction = (new_direction / Mathf.Abs(new_direction));
 		}
 		rb.velocity = transform.rotation * new Vector3(-Input.GetAxis("Vertical"), 0.0f, Input.GetAxis("Horizontal")) * direction * speed;
@@ -60,6 +64,7 @@ public class Player : MonoBehaviour
 	{
 		current_health -= amount;
 		update_health_text(current_health);
+		update_health_bar();
 		if(current_health <= 0)
 		{
 			update_health_text(0);
@@ -88,6 +93,11 @@ public class Player : MonoBehaviour
 	{
 		return current_attack_cooldown > 0.0f;
 	}
+	
+	private float get_health_percentage()
+	{
+		return (float)(current_health) / (float)(health);
+	}
 
 	private void update_attack_cooldown_text(float cooldown)
 	{
@@ -95,6 +105,11 @@ public class Player : MonoBehaviour
 			attack_cooldown_text.text = "";
 		else
 			attack_cooldown_text.text = "CD: " + (cooldown.ToString("F2").PadLeft(4, ' ')) + "s";
+	}
+	
+	private void update_health_bar()
+	{
+		health_bar.value = get_health_percentage();
 	}
 
 	private void update_health_text(int amount)

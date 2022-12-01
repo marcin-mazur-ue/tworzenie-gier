@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour
 	private float direction;
 
 	[SerializeField] private BoxCollider attack_area;
+	[SerializeField] private Slider health_bar;
 
 	void Start()
 	{
@@ -25,6 +27,7 @@ public class Enemy : MonoBehaviour
 		direction = 1.0f;
 		current_health = health;
 		current_attack_cooldown = 0.0f;
+		update_health_bar();
 	}
 
 	void FixedUpdate()
@@ -37,7 +40,9 @@ public class Enemy : MonoBehaviour
 			movement_vector_normalized.z = 0.0f;
 		if(movement_vector_normalized.z * direction < 0.0f)
 		{
-			transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
+			Vector3 rotation = new Vector3(0.0f, 180.0f, 0.0f);
+			transform.Rotate(rotation);
+			health_bar.transform.Rotate(rotation);
 			direction = movement_vector_normalized.z;
 		}
 		rb.velocity = transform.rotation * new Vector3(movement_vector_normalized.x, 0.0f, movement_vector_normalized.z) * direction * speed;
@@ -60,7 +65,13 @@ public class Enemy : MonoBehaviour
 	{
 		current_health -= amount;
 		if(current_health <= 0)
+		{
+			current_health = 0;
+			update_health_bar();
 			die();
+		}
+		else
+			update_health_bar();
 	}
 
 	private void attack()
@@ -93,9 +104,19 @@ public class Enemy : MonoBehaviour
 	{
 		Destroy(gameObject);
 	}
+	
+	private float get_health_percentage()
+	{
+		return (float)(current_health) / (float)(health);
+	}
 
 	private bool is_attack_on_cooldown()
 	{
 		return current_attack_cooldown > 0.0f;
+	}
+	
+	private void update_health_bar()
+	{
+		health_bar.value = get_health_percentage();
 	}
 }
