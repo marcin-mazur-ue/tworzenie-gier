@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 				current_attack_cooldown -= Time.deltaTime;
 		}
 		update_attack_cooldown_text(current_attack_cooldown);
-		if(Input.GetKeyDown(KeyCode.Space) && is_attack_on_cooldown() == false)
+		if(Input.GetKeyDown(KeyCode.LeftControl) && is_attack_on_cooldown() == false)
 			attack();
 	}
 
