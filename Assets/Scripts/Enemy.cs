@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
 	{
 		current_attack_cooldown = attack_cooldown;
 
-		Collider[] attack_area_colliders = Physics.OverlapBox(attack_area.transform.position, attack_area.transform.localScale / 2.0f, Quaternion.identity);
+		Collider[] attack_area_colliders = Physics.OverlapBox(attack_area.transform.position, attack_area.transform.lossyScale / 2.0f, Quaternion.identity);
 		foreach(Collider collider in attack_area_colliders)
 		{
 			if(collider.gameObject.tag == "Player")
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
 		if(is_attack_on_cooldown() == true)
 			return false;
 
-		Collider[] attack_area_colliders = Physics.OverlapBox(attack_area.transform.position, attack_area.transform.localScale / 2.0f, Quaternion.identity);
+		Collider[] attack_area_colliders = Physics.OverlapBox(attack_area.transform.position, attack_area.transform.lossyScale / 2.0f, Quaternion.identity);
 		foreach(Collider collider in attack_area_colliders)
 		{
 			if(collider.gameObject.tag == "Player")
