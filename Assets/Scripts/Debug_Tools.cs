@@ -10,14 +10,19 @@ public class Debug_Tools : MonoBehaviour
 	[SerializeField] private Transform boss_spawn;
 	[SerializeField] private Transform powerup_health_spawn;
 	
-	public void quit_game()
+	public void quit_to_desktop()
 	{
 		Application.Quit();
 	}
 	
-	public void restart_level()
+	public void quit_to_menu_menu()
 	{
 		SceneManager.LoadScene(0);
+	}
+	
+	public void restart_level()
+	{
+		SceneManager.LoadScene(1);
 	}
 	
 	public void spawn_enemy()
