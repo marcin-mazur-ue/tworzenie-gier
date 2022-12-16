@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
 	private float current_attack_cooldown;
 
 	private Rigidbody rb;
+	private Animator animator_controller;
 	private float direction;
 
 	[SerializeField] private Transform camera_position;
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		animator_controller = GetComponent<Animator>();
+		animator_controller.SetBool("isMoving", false);
 		attack_area.transform.localScale = new Vector3(1.0f, 1.0f, attack_range);
 		attack_area.transform.localPosition = new Vector3(0.0f, 0.0f, 0.5f * (attack_range + 1.0f));
 		direction = 1.0f;
@@ -34,7 +38,14 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		float new_direction = Input.GetAxis("Horizontal");
+		if (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) 
+		{
+			if (!animator_controller.GetBool("isMoving"))
+                animator_controller.SetBool("isMoving", true);
+        }else
+            animator_controller.SetBool("isMoving", false);
+
+        float new_direction = Input.GetAxis("Horizontal");
 		if(new_direction * direction < 0.0f)
 		{
 			Vector3 rotation = new Vector3(0.0f, 180.0f, 0.0f);
@@ -87,7 +98,7 @@ public class Player : MonoBehaviour
 		current_attack_cooldown = attack_cooldown;
 
 		Collider[] attack_area_colliders = Physics.OverlapBox(attack_area.transform.position, attack_area.transform.lossyScale / 2.0f, Quaternion.identity);
-		foreach(Collider collider in attack_area_colliders)
+        foreach (Collider collider in attack_area_colliders)
 		{
 			if(collider.gameObject.tag == "Enemy")
 				collider.gameObject.GetComponent<Enemy>().receive_damage(attack_strength);
