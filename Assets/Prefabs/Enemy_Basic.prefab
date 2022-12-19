@@ -315,9 +315,9 @@ GameObject:
   - component: {fileID: 95394820208651578}
   - component: {fileID: 6044575491660817343}
   - component: {fileID: 2586045159084355971}
-  - component: {fileID: 5081812094591886542}
+  - component: {fileID: 1006364674219695552}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: Enemy_Basic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +391,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5081812094591886542
+--- !u!114 &1006364674219695552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,22 +400,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1391888216552696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 531f19613472e2040ba0d935411b735d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d5f02e2c17eaa541a58646d6aac2612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  health: 20
+  max_health: 20
   attack_strength: 20
-  attack_cooldown: 2
+  attack_cooldown: 1.5
+  attack_delay_length: 0.35
   attack_range: 1
-  knockback: 500000
-  current_health: 0
-  current_attack_cooldown: 0
-  rb: {fileID: 0}
-  player: {fileID: 0}
-  player_position: {fileID: 0}
-  direction: 0
-  isAttacking: 0
+  knockback_strength: 500000
+  valid_attack_target_tags:
+  - Player
   attack_area: {fileID: 6384762680460945493}
   health_bar: {fileID: 2435458269709447164}
 --- !u!1 &1412685104993132
@@ -1352,7 +1348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3909992519192188281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.495, z: 0}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1387,7 +1383,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed88480b966d50547abbc6a44c88e30e, type: 2}
+  - {fileID: 2100000, guid: 1f1562610848ca84494b86e5fe6371f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1612,7 +1608,7 @@ Transform:
   m_GameObject: {fileID: 8839816777919752234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1.5999999}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7901097887781225035}
@@ -1631,4 +1627,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
