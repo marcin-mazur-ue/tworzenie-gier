@@ -9,6 +9,9 @@ public class Player : Character
 	[SerializeField] private Text attack_cooldown_text;
 	[SerializeField] private Image current_weapon_panel;
 	
+	[SerializeField] private ParticleSystem particle_system_damage;
+	[SerializeField] private ParticleSystem particle_system_heal;
+	
 	protected override void initialize()
 	{
 		base.initialize();
@@ -33,6 +36,18 @@ public class Player : Character
 		
 		if (Input.GetKeyDown(KeyCode.LeftControl) && can_attack() == true)
 			attack();
+	}
+	
+	public override void heal(int amount)
+	{
+		particle_system_heal.Play();
+		base.heal(amount);
+	}
+	
+	public override void receive_damage(int amount)
+	{
+		particle_system_damage.Play();
+		base.receive_damage(amount);
 	}
 	
 	protected override void die()
