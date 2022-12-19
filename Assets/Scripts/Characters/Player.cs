@@ -8,6 +8,7 @@ public class Player : Character
 	[SerializeField] private Text health_text;
 	[SerializeField] private Text attack_cooldown_text;
 	[SerializeField] private Image current_weapon_panel;
+	[SerializeField] private GameObject game_over_screen;
 	
 	[SerializeField] private ParticleSystem particle_system_damage;
 	[SerializeField] private ParticleSystem particle_system_heal;
@@ -53,6 +54,7 @@ public class Player : Character
 	protected override void die()
 	{
 		base.die();
+		game_over_screen.SetActive(true);
 		Time.timeScale = 0.0f;
 	}
 	
