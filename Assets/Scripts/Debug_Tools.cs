@@ -3,10 +3,24 @@ using UnityEngine.SceneManagement;
 
 public class Debug_Tools : MonoBehaviour
 {
+	[SerializeField] private GameObject show_debug_tools_button;
+	[SerializeField] private GameObject debug_buttons_group;
 	[SerializeField] private GameObject enemy_prefab;
 	[SerializeField] private GameObject powerup_health_prefab;
 	[SerializeField] private Transform enemy_spawn;
 	[SerializeField] private Transform powerup_health_spawn;
+	
+	public void show_debug_tools()
+	{
+		debug_buttons_group.SetActive(true);
+		show_debug_tools_button.SetActive(false);
+	}
+	
+	public void hide_debug_tools()
+	{
+		show_debug_tools_button.SetActive(true);
+		debug_buttons_group.SetActive(false);
+	}
 	
 	public void quit_to_desktop()
 	{

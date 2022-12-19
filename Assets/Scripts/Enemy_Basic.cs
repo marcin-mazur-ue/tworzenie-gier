@@ -35,6 +35,12 @@ public class Enemy_Basic : Character
 		Destroy(gameObject);
 	}
 	
+	protected override void flip()
+	{
+		base.flip();
+		health_bar.transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
+	}
+	
 	private float normalize(float value) //zwraca -1 dla ujemnych wartości, 1 dla dodatnich, lub niezmienione 0
 	{
 		value /= Mathf.Abs(value);

@@ -105,6 +105,11 @@ public class Character : MonoBehaviour
 		gameObject.SetActive(false);
 	}
 	
+	protected virtual void flip()
+	{
+		transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
+	}
+	
 	protected virtual void move(float x, float z)
 	{
 		rb.velocity = transform.rotation * new Vector3(x, 0.0f, z) * facing_direction * speed;
@@ -133,9 +138,7 @@ public class Character : MonoBehaviour
 	{
 		if (new_direction * facing_direction < 0.0f)
 		{
-			Vector3 rotation = new Vector3(0.0f, 180.0f, 0.0f);
-			transform.Rotate(rotation);
-			health_bar.transform.Rotate(rotation);
+			flip();
 			facing_direction = new_direction / Mathf.Abs(new_direction);
 		}
 	}
