@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class Player : Character
 {
-	[SerializeField] private Transform camera_position;
 	[SerializeField] private Text health_text;
-	[SerializeField] private Text attack_cooldown_text;
 	[SerializeField] private Image current_weapon_panel;
 	[SerializeField] private GameObject game_over_screen;
 	
@@ -29,7 +27,6 @@ public class Player : Character
 	protected override void update()
 	{
 		base.update();
-		camera_position.position = new Vector3(camera_position.position.x, camera_position.position.y, transform.position.z);
 		if (is_attacking == true)
 			current_weapon_panel.color = new Color(0.9f, 0.9f, 0.9f, 0.4f);
 		else

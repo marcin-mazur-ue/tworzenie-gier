@@ -17,8 +17,7 @@ public class Main_Menu : MonoBehaviour
 	
 	public void start_new_game()
 	{
-		//tymczasowo wczytuje pokazowa scene, bo jeszcze nie ma wlasciwych poziomow
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(2);
 	}
 	
 	public void show_main_menu()
