@@ -8,7 +8,7 @@ public class Game_Over_Screen : MonoBehaviour
 	public void return_to_level_select()
 	{
 		Time.timeScale = 1.0f;
-		SceneManager.LoadScene(0); //placeholder, w tej chwili to jeszcze nie jest mapa
+		SceneManager.LoadScene(3);
 	}
 	
 	public void return_to_main_menu()

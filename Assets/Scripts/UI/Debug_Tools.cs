@@ -34,7 +34,7 @@ public class Debug_Tools : MonoBehaviour
 	
 	public void restart_level()
 	{
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(2);
 		Time.timeScale = 1.0f;
 	}
 	
