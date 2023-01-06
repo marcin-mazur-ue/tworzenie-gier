@@ -992,6 +992,7 @@ MonoBehaviour:
   first_section: 1
   last_section: 0
   enemy_spawn_delay: 2
+  camera_speed: 50
   enemies_group: {fileID: 1494361160}
   enter_barrier: {fileID: 0}
   exit_barrier: {fileID: 369301992}
@@ -5499,7 +5500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813839617}
   m_LocalRotation: {x: -0.24184473, y: 0.66446304, z: -0.24184473, w: -0.66446304}
-  m_LocalPosition: {x: 19, y: 20, z: 25.96}
+  m_LocalPosition: {x: 19, y: 20, z: -25.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7214,7 +7215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   first_section: 0
   last_section: 1
-  enemy_spawn_delay: 0
+  enemy_spawn_delay: 1
+  camera_speed: 50
   enemies_group: {fileID: 1835899783}
   enter_barrier: {fileID: 369301992}
   exit_barrier: {fileID: 0}

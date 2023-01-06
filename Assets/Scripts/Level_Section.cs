@@ -8,6 +8,7 @@ public class Level_Section : MonoBehaviour
 	[SerializeField] private bool first_section;
 	[SerializeField] private bool last_section;
 	[SerializeField] private float enemy_spawn_delay;
+	[SerializeField] private float camera_speed = 50.0f;
 	
 	[SerializeField] private GameObject enemies_group;
 	[SerializeField] private GameObject enter_barrier;
@@ -36,7 +37,11 @@ public class Level_Section : MonoBehaviour
 
 	void Update()
 	{
-		if (active == false || cleared == true || enemies_spawned == false)
+		if (active == false || cleared == true)
+			return;
+		
+		move_camera();
+		if (enemies_spawned == false)
 			return;
 		
 		int active_enemies = count_active_enemies();
@@ -64,7 +69,6 @@ public class Level_Section : MonoBehaviour
 	private void activate()
 	{
 		active = true;
-		level_camera.transform.position = section_camera_position.position;
 		if (enter_barrier != null)
 			enter_barrier.SetActive(true);
 		if (exit_barrier != null)
@@ -85,9 +89,19 @@ public class Level_Section : MonoBehaviour
 		Collider[] level_section_colliders = Physics.OverlapBox(section_collider.transform.position, section_collider.transform.lossyScale / 2.0f, Quaternion.identity);
 		foreach (Collider collider in level_section_colliders)
 		{
-			if(collider.gameObject.tag == "Enemy")
+			if (collider.gameObject.tag == "Enemy")
 				result++;
 		}
 		return result;
+	}
+	
+	private void move_camera()
+	{
+		float camera_distance = section_camera_position.position.z - level_camera.transform.position.z;
+		float distance_to_move = camera_speed * Time.deltaTime;
+		if (camera_distance > distance_to_move)
+			level_camera.transform.position += new Vector3(0.0f, 0.0f, distance_to_move);
+		else
+			level_camera.transform.position = section_camera_position.position;
 	}
 }
