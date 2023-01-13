@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33242112850331660}
   - component: {fileID: 23225576292160158}
   m_Layer: 0
-  m_Name: GasTank
+  m_Name: Gas_Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
