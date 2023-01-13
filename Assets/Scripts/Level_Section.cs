@@ -11,7 +11,6 @@ public class Level_Section : MonoBehaviour
 	[SerializeField] private float camera_speed = 50.0f;
 	
 	[SerializeField] private GameObject enemies_group;
-	[SerializeField] private GameObject enter_barrier;
 	[SerializeField] private GameObject exit_barrier;
 	[SerializeField] private Transform section_camera_position;
 	
@@ -56,7 +55,6 @@ public class Level_Section : MonoBehaviour
 				level_complete_screen.SetActive(true);
 				Time.timeScale = 0.0f;
 			}
-			section_collider.gameObject.SetActive(false);
 		}
 	}
 	
@@ -69,8 +67,6 @@ public class Level_Section : MonoBehaviour
 	private void activate()
 	{
 		active = true;
-		if (enter_barrier != null)
-			enter_barrier.SetActive(true);
 		if (exit_barrier != null)
 			exit_barrier.SetActive(true);
 		StartCoroutine(spawn_enemies());
