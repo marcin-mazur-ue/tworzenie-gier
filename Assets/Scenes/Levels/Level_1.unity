@@ -518,6 +518,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -582,6 +586,10 @@ PrefabInstance:
     - target: {fileID: 4856146082550060, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -835,6 +843,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -899,6 +911,10 @@ PrefabInstance:
     - target: {fileID: 4856146082550060, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3095,6 +3111,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -3515,6 +3535,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -3704,6 +3728,10 @@ PrefabInstance:
     - target: {fileID: 4856146082550060, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3970,6 +3998,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -4103,6 +4135,10 @@ PrefabInstance:
     - target: {fileID: 4856146082550060, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4287,6 +4323,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -4352,6 +4392,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -4416,6 +4460,10 @@ PrefabInstance:
     - target: {fileID: 4856146082550060, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4713,6 +4761,10 @@ PrefabInstance:
     - target: {fileID: 4856146082550060, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006364674219695552, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
+      propertyPath: min_speed_percentage
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1161979736785539306, guid: 0c74bed2ad49fad4d94fca86441ad49f, type: 3}
       propertyPath: m_AnchorMax.x

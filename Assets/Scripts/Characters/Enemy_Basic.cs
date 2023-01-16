@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Enemy_Basic : Character
 {
+	[SerializeField] protected float min_speed_percentage = 0.6f;
+	
 	private Transform player_position;
 	
 	protected override void initialize()
 	{
 		base.initialize();
 		player_position = FindObjectOfType<Player>().GetComponent<Transform>();
+		speed *= Random.Range(min_speed_percentage, 1.0f);
 	}
 	
 	protected override void fixed_update()
