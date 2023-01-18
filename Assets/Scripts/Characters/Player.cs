@@ -5,10 +5,11 @@ public class Player : Character
 {
 	[SerializeField] private Text health_text;
 	[SerializeField] private Image current_weapon_panel;
-	[SerializeField] private GameObject game_over_screen;
 	
 	[SerializeField] private ParticleSystem particle_system_damage;
 	[SerializeField] private ParticleSystem particle_system_heal;
+	
+	[SerializeField] private Level_Manager level_manager;
 	
 	protected override void initialize()
 	{
@@ -44,14 +45,14 @@ public class Player : Character
 	public override void receive_damage(int amount)
 	{
 		particle_system_damage.Play();
+		level_manager.player_received_damage(amount);
 		base.receive_damage(amount);
 	}
 	
 	protected override void die()
 	{
 		base.die();
-		game_over_screen.SetActive(true);
-		Time.timeScale = 0.0f;
+		level_manager.player_died();
 	}
 	
 	protected override void update_attack_cooldown()

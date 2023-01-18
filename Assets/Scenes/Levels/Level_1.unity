@@ -549,6 +549,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 813839620}
     - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
+      propertyPath: level_manager
+      value: 
+      objectReference: {fileID: 607936414}
+    - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
       propertyPath: enemy_spawn_delay
       value: 2
       objectReference: {fileID: 0}
@@ -1681,6 +1685,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &607936414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
+  m_PrefabInstance: {fileID: 815241163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6baf90dc1ec2aed42aaba6345fe0aa6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &613807321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2438,16 +2453,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4476694954994722598, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
+      propertyPath: time_to_gain_star
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476694954994722598, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
+      propertyPath: max_damage_to_gain_star
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
+      propertyPath: time_to_gain_star
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
+      propertyPath: current_level_scene_id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
+      propertyPath: max_damage_to_gain_star
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
 --- !u!1 &815241164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4423806420038075330, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
-  m_PrefabInstance: {fileID: 815241163}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &815241165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4423806419354183206, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
   m_PrefabInstance: {fileID: 815241163}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &815241166 stripped
@@ -3447,6 +3477,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 815241169}
     - target: {fileID: 5741554041296318916, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
+      propertyPath: level_manager
+      value: 
+      objectReference: {fileID: 607936414}
+    - target: {fileID: 5741554041296318916, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: attack_cooldown
       value: 1
       objectReference: {fileID: 0}
@@ -3461,7 +3495,7 @@ PrefabInstance:
     - target: {fileID: 5741554041296318916, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: game_over_screen
       value: 
-      objectReference: {fileID: 815241165}
+      objectReference: {fileID: 0}
     - target: {fileID: 5741554041296318916, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: current_weapon_panel
       value: 
@@ -3972,6 +4006,10 @@ PrefabInstance:
       propertyPath: level_camera
       value: 
       objectReference: {fileID: 813839620}
+    - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
+      propertyPath: level_manager
+      value: 
+      objectReference: {fileID: 607936414}
     - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
       propertyPath: enemy_spawn_delay
       value: 0.5
@@ -6508,6 +6546,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 531725341}
     m_Modifications:
     - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
+      propertyPath: last_section
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
       propertyPath: level_camera
       value: 
       objectReference: {fileID: 813839620}
@@ -6515,6 +6557,10 @@ PrefabInstance:
       propertyPath: first_section
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
+      propertyPath: level_manager
+      value: 
+      objectReference: {fileID: 607936414}
     - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
       propertyPath: active_enemies_text
       value: 

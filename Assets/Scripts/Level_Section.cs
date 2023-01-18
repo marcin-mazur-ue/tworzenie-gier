@@ -18,6 +18,8 @@ public class Level_Section : MonoBehaviour
 	[SerializeField] private GameObject level_complete_screen;
 	[SerializeField] private Camera level_camera;
 	
+	[SerializeField] private Level_Manager level_manager;
+	
 	private bool active;
 	private bool cleared;
 	private bool enemies_spawned;
@@ -51,10 +53,7 @@ public class Level_Section : MonoBehaviour
 			if (last_section == false)
 				exit_barrier.SetActive(false);
 			else
-			{
-				level_complete_screen.SetActive(true);
-				Time.timeScale = 0.0f;
-			}
+				level_manager.finish_level(true);
 		}
 	}
 	

@@ -20,6 +20,11 @@ public class Game_Data_Manager : MonoBehaviour
 		}
 	}
 	
+	public static bool is_star_gained(int level_index, int star_index)
+	{
+		return instance.data.stars_gained[level_index, star_index];
+	}
+	
 	public static void load_and_apply(int save_slot_index)
 	{
 		Game_Data loaded_data = load_from_file(save_slot_index);
@@ -50,9 +55,15 @@ public class Game_Data_Manager : MonoBehaviour
 		file.Close();
 	}
 	
-	public static void unlock_level(int index)
+	public static void set_level_complete(int index, bool star_gained_time, bool star_gained_damage)
 	{
-		instance.data.levels_unlocked[index] = true;
+		instance.data.stars_gained[index, 0] = true;
+		if(index < Game_Data.levels_amount - 1)
+			instance.data.levels_unlocked[index] = true; // indeksem tak naprawdę jest [index + 1 - 1], ponieważ odblokowany powinien zawsze zostać następny poziom, ale tablica levels_unlocked nie uwzględnia pierwszego poziomu
+		if(star_gained_time == true)
+			instance.data.stars_gained[index, 1] = true;
+		if(star_gained_damage == true)
+			instance.data.stars_gained[index, 2] = true;
 	}
 	
 	private static string get_save_file_path(int save_slot_index)
@@ -69,7 +80,7 @@ public class Game_Data
 	public const int weapons_amount = 3;
 	
 	public bool[] levels_unlocked = new bool[levels_amount - 1]; // pierwszy poziom jest zawsze odblokowany, więc levels_unlocked[0] oznacza drugi, levels_unlocked[1] trzeci itd.
-	public bool[,] stars_gained = new bool[levels_amount, stars_per_level];
+	public bool[,] stars_gained = new bool[levels_amount, stars_per_level]; // [x, 0] - przejście poziomu; [x, 1] - przejście poziomu w wyznaczonym czasie; [x, 2] - przejście poziomu nie przekraczając określonej ilości otrzymanych obrażeń
 	public bool[] weapons_unlocked = new bool[weapons_amount - 1]; // "brak broni" liczy się jako broń, ale jest zawsze odblokowany
 	
 	public Game_Data()
