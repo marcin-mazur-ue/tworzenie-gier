@@ -6551,7 +6551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
       propertyPath: last_section
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3118623018629909714, guid: 9c33192001ebf0840ba54b8422453137, type: 3}
       propertyPath: level_camera

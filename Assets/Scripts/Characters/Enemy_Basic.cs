@@ -1,16 +1,20 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_Basic : Character
 {
 	[SerializeField] protected float min_speed_percentage = 0.6f;
 	
 	private Transform player_position;
+	private NavMeshAgent agent;
 	
 	protected override void initialize()
 	{
 		base.initialize();
 		player_position = FindObjectOfType<Player>().GetComponent<Transform>();
+		agent = GetComponent<NavMeshAgent>();
 		speed *= Random.Range(min_speed_percentage, 1.0f);
+		agent.speed = speed;
 	}
 	
 	protected override void fixed_update()
@@ -18,9 +22,9 @@ public class Enemy_Basic : Character
 		base.fixed_update();
 		if (!animator_controller.GetBool("isMoving"))
 			animator_controller.SetBool("isMoving", true);
-
+		agent.destination = player_position.position;
 		Vector3 movement_vector = player_position.position - transform.position;
-		move(normalize(movement_vector.x), normalize(movement_vector.z));
+		update_direction(normalize(movement_vector.z));
 	}
 	
 	protected override void update()
@@ -32,16 +36,15 @@ public class Enemy_Basic : Character
 			attack();
 		}
 	}
-	
-	protected override void die()
-	{
-		Destroy(gameObject);
-	}
-	
 	protected override void flip()
 	{
 		base.flip();
 		health_bar.transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
+	}
+
+	protected override void die()
+	{
+		Destroy(gameObject);
 	}
 	
 	private float normalize(float value) //zwraca -1 dla ujemnych wartości, 1 dla dodatnich, lub niezmienione 0
