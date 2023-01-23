@@ -21,7 +21,7 @@ public class Level_Manager : MonoBehaviour
 	
 	[SerializeField] private int current_level_scene_id;
 	private const int main_menu_scene_id = 0;
-	private const int level_select_scene_id = 3;
+	private const int level_select_scene_id = 1;
 	
 	private int player_damage_taken = 0;
 	private float time_elapsed = 0.0f;

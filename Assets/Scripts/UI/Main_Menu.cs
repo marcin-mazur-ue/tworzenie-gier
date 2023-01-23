@@ -9,6 +9,8 @@ public class Main_Menu : MonoBehaviour
 	[SerializeField] private GameObject achievements_panel;
 	[SerializeField] private GameObject settings_panel;
 	
+	private const int level_select_scene_id = 1;
+	
 	public void load_save()
 	{
 		//TODO
@@ -17,7 +19,7 @@ public class Main_Menu : MonoBehaviour
 	
 	public void start_new_game()
 	{
-		SceneManager.LoadScene(3);
+		SceneManager.LoadScene(level_select_scene_id);
 	}
 	
 	public void show_main_menu()
