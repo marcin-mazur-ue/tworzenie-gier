@@ -44,6 +44,7 @@ public class Enemy_Basic : Character
 
 	protected override void die()
 	{
+		Game_Data_Manager.increase_achievement_progress(5, 1);
 		Destroy(gameObject);
 	}
 	

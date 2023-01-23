@@ -59,6 +59,8 @@ public class Level_Manager : MonoBehaviour
 		{
 			level_complete_text.text = "Poziom " + (level_index + 1).ToString() + " zaliczony!";
 			Game_Data_Manager.set_level_complete(level_index, time_elapsed < time_to_gain_star, player_damage_taken < max_damage_to_gain_star);
+			if (player_damage_taken == 0)
+				Game_Data_Manager.set_achievement_progress(3, 1);
 		}
 		time_elapsed_text.text = "Twój czas:\n" + ((int)(time_elapsed)).ToString() + "s";
 		damage_taken_text.text = "Otrzymane obrażenia:\n" + player_damage_taken.ToString();

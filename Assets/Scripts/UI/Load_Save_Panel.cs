@@ -22,7 +22,7 @@ public class Load_Save_Panel : MonoBehaviour
 		}
 		completion_percentage.text = (Mathf.Floor(data.get_game_completion_percentage() * 100.0f)).ToString() + "%";
 		highest_level_unlocked.text = "Poziom " + data.get_highest_unlocked_level().ToString();
-		stars_gained.text = data.get_stars_gained_amount().ToString().PadLeft(2, ' ') + "/" + (Game_Data.levels_amount * Game_Data.stars_per_level).ToString();
+		stars_gained.text = data.get_total_stars_gained_amount().ToString().PadLeft(2, ' ') + "/" + (Game_Data.levels_amount * Game_Data.stars_per_level).ToString();
 		weapons_unlocked.text = data.get_weapons_unlocked_amount().ToString().PadLeft(2, ' ') + "/" + Game_Data.weapons_amount.ToString();
 	}
 }
