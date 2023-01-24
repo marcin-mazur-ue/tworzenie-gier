@@ -113,6 +113,11 @@ public class Game_Data_Manager : MonoBehaviour
 		increase_achievement_progress(2, get_total_stars_gained_amount() - stars_gained);
 	}
 	
+	public static void reset()
+	{
+		instance.data = new Game_Data();
+	}
+	
 	private static string get_save_file_path(int save_slot_index)
 	{
 		return Application.persistentDataPath + "/save" + save_slot_index.ToString();

@@ -11,14 +11,15 @@ public class Main_Menu : MonoBehaviour
 	
 	private const int level_select_scene_id = 1;
 	
-	public void load_save()
+	public void load_save(int save_slot_id)
 	{
-		//TODO
-		//wczytanie sceny z mapa swiata lub z ostatnio rozgrywanym poziomem i ustawianie odpowiednich zmiennych wyznaczajacych postep gracza w danym save'ie
+		Game_Data_Manager.load_and_apply(save_slot_id);
+		SceneManager.LoadScene(level_select_scene_id);
 	}
 	
 	public void start_new_game()
 	{
+		Game_Data_Manager.reset();
 		SceneManager.LoadScene(level_select_scene_id);
 	}
 	
@@ -57,11 +58,5 @@ public class Main_Menu : MonoBehaviour
 	public void quit()
 	{
 		Application.Quit();
-	}
-	
-	private void get_saves_list()
-	{
-		//TODO
-		//wczytanie znajdujacych sie na dysku save'ow i dodanie ich do listy z ktorej gracz moze wybrac jeden z nich
 	}
 }
