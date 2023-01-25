@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class Enemy_Basic : Character
 {
 	[SerializeField] protected float min_speed_percentage = 0.6f;
+	[SerializeField] protected float max_speed_percentage = 1.4f;
 	
 	private Transform player_position;
 	private NavMeshAgent agent;
@@ -13,7 +14,7 @@ public class Enemy_Basic : Character
 		base.initialize();
 		player_position = FindObjectOfType<Player>().GetComponent<Transform>();
 		agent = GetComponent<NavMeshAgent>();
-		speed *= Random.Range(min_speed_percentage, 1.0f);
+		speed *= Random.Range(min_speed_percentage, max_speed_percentage);
 		agent.speed = speed;
 	}
 	
