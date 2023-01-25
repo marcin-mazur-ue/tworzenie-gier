@@ -31,9 +31,13 @@ public class Player : Character
 			current_weapon_panel.color = new Color(0.9f, 0.9f, 0.9f, 0.4f);
 		else
 			current_weapon_panel.color = new Color(0.7f, 0.7f, 0.7f, 0.4f);
-		
-		if (Input.GetKeyDown(KeyCode.LeftControl) && can_attack() == true)
+
+		if (Input.GetKeyDown(KeyCode.LeftControl) && can_attack() == true) 
+		{
+			animator_controller.SetTrigger("TrAttack"); //Ró¿ne ataki bêd¹ ró¿nymi triggerami
 			attack();
+		}
+			
 	}
 	
 	public override void heal(int amount)
