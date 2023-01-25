@@ -2050,7 +2050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
       propertyPath: time_to_gain_star
-      value: 20
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
       propertyPath: current_level_scene_id
@@ -2058,7 +2058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
       propertyPath: max_damage_to_gain_star
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
