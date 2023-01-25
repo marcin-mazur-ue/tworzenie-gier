@@ -1796,12 +1796,16 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
+      propertyPath: level_index
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
       propertyPath: time_to_gain_star
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
       propertyPath: current_level_scene_id
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9060103673491426956, guid: 3a813fddc29546d4abfefc7f7a14f220, type: 3}
       propertyPath: max_damage_to_gain_star
