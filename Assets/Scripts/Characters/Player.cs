@@ -17,27 +17,32 @@ public class Player : Character
 		animator_controller.SetBool("isMoving", false);
 	}
 	
+	protected override void add_attacks()
+	{
+		attacks = new Attack[]
+		{
+			new Attack(20, 0.4f, 1.0f, 2.5f, 40000)
+		};
+	}
+	
 	protected override void fixed_update()
 	{
 		base.fixed_update();
-		animator_controller.SetBool("isMoving", Input.GetAxis("Vertical") != 0.0f || Input.GetAxis("Horizontal") != 0.0f);
-		move(-Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+		if (can_move() == true)
+		{
+			animator_controller.SetBool("isMoving", Input.GetAxis("Vertical") != 0.0f || Input.GetAxis("Horizontal") != 0.0f);
+			move(new Vector3(-Input.GetAxis("Vertical"), 0.0f, Input.GetAxis("Horizontal")));
+		}
 	}
 	
 	protected override void update()
 	{
 		base.update();
-		if (is_attacking == true)
-			current_weapon_panel.color = new Color(0.9f, 0.9f, 0.9f, 0.4f);
-		else
-			current_weapon_panel.color = new Color(0.7f, 0.7f, 0.7f, 0.4f);
-
 		if (Input.GetKeyDown(KeyCode.LeftControl) && can_attack() == true) 
 		{
 			animator_controller.SetTrigger("TrAttack"); //Ró¿ne ataki bêd¹ ró¿nymi triggerami
-			attack();
+			attack(0);
 		}
-			
 	}
 	
 	public override void heal(int amount)
@@ -62,7 +67,13 @@ public class Player : Character
 	protected override void update_attack_cooldown()
 	{
 		base.update_attack_cooldown();
-		current_weapon_panel.fillAmount = 1.0f - ((float)(current_attack_cooldown) / (float)(attack_cooldown));
+		if (current_attack != null)
+		{
+			current_weapon_panel.color = new Color(0.9f, 0.9f, 0.9f, 0.4f);
+			current_weapon_panel.fillAmount = 1.0f - current_attack.get_current_cooldown_percentage();
+		}
+		else
+			current_weapon_panel.color = new Color(0.7f, 0.7f, 0.7f, 0.4f);
 	}
 	
 	protected override void update_health()
@@ -73,6 +84,6 @@ public class Player : Character
 	
 	protected override bool can_attack()
 	{
-		return is_attacking == false && is_attack_on_cooldown() == false;
+		return is_attack_on_cooldown() == false;
 	}
 }

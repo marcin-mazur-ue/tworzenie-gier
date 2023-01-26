@@ -7,14 +7,9 @@ public class Character : MonoBehaviour
 {
 	[SerializeField] protected float speed = 2.0f;
 	[SerializeField] protected int max_health = 20;
-	[SerializeField] protected int attack_strength = 20;
-	[SerializeField] protected float attack_cooldown = 2.0f;
-	[SerializeField] protected float attack_delay_length = 2.0f;
-	[SerializeField] protected float attack_range = 1.0f;
-	[SerializeField] protected float knockback_strength = 500000.0f;
+	[SerializeField] protected Attack[] attacks;
 	protected int current_health;
-	protected float current_attack_cooldown;
-	protected bool is_attacking;
+	protected Attack current_attack;
 	
 	protected Rigidbody rb;
 	protected Animator animator_controller;
@@ -41,14 +36,18 @@ public class Character : MonoBehaviour
 	
 	protected virtual void initialize()
 	{
+		add_attacks();
 		current_health = max_health;
-		current_attack_cooldown = 0.0f;
-		is_attacking = false;
+		current_attack = null;
 		rb = GetComponent<Rigidbody>();
 		animator_controller = GetComponent<Animator>();
 		facing_direction = 1.0f;
-		update_attack_range();
 		update_health();
+	}
+	
+	protected virtual void add_attacks()
+	{
+		attacks = new Attack[0];
 	}
 	
 	protected virtual void fixed_update()
@@ -83,20 +82,32 @@ public class Character : MonoBehaviour
 			update_health();
 	}
 	
-	protected virtual void attack()
+	public virtual void suffer_knockback(int force, Vector3 direction)
 	{
-		is_attacking = true;
+		rb.AddForce(direction * force);
+	}
+	
+	protected virtual void attack(int attack_index)
+	{
+		current_attack = attacks[attack_index];
 		StartCoroutine(delayed_attack());
 	}
 	
 	protected IEnumerator delayed_attack() 
 	{
-		yield return new WaitForSeconds(attack_delay_length);
-		List<GameObject> targets = get_valid_attack_targets();
+		current_attack.start();
+		attack_area.gameObject.SetActive(true);
+		update_attack_area(current_attack);
+		yield return new WaitForSeconds(current_attack.get_windup_time());
+		List<GameObject> targets = get_valid_attack_targets(current_attack);
 		foreach (GameObject target in targets)
-			target.GetComponent<Character>().receive_damage(attack_strength);
-		is_attacking = false;
-		current_attack_cooldown = attack_cooldown;
+		{
+			target.GetComponent<Character>().receive_damage(current_attack.get_damage_dealt());
+			target.GetComponent<Character>().suffer_knockback(current_attack.get_knockback_strength(), transform.forward);
+		}
+		attack_area.gameObject.SetActive(false);
+		yield return new WaitForSeconds(current_attack.get_cooldown());
+		current_attack = null;
 	}
 	
 	protected virtual void die()
@@ -109,28 +120,23 @@ public class Character : MonoBehaviour
 		transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
 	}
 	
-	protected virtual void move(float x, float z)
+	protected virtual void move(Vector3 movement_vector)
 	{
-		rb.velocity = transform.rotation * new Vector3(x, 0.0f, z) * facing_direction * speed;
-		update_direction(z);
+		update_direction(movement_vector.z);
+		rb.velocity = transform.rotation * movement_vector * facing_direction * speed;
+	}
+	
+	protected void update_attack_area(Attack attack)
+	{	
+		BoxCollider collider = gameObject.GetComponent<BoxCollider>();
+		attack_area.transform.localScale = new Vector3(attack_area.transform.localScale.x, attack_area.transform.localScale.y, attack.get_range() * collider.size.z);
+		attack_area.transform.localPosition = new Vector3(0.0f, 0.0f, (collider.size.z + attack_area.transform.localScale.z) / 2.0f);
 	}
 	
 	protected virtual void update_attack_cooldown()
 	{
-		if (is_attack_on_cooldown() == true)
-		{
-			if (current_attack_cooldown <= Time.deltaTime)
-				current_attack_cooldown = 0.0f;
-			else
-				current_attack_cooldown -= Time.deltaTime;
-		}
-	}
-	
-	protected void update_attack_range()
-	{
-		BoxCollider collider = gameObject.GetComponent<BoxCollider>();
-		attack_area.transform.localScale = new Vector3(attack_area.transform.localScale.x, attack_area.transform.localScale.y, attack_range * collider.size.z);
-		attack_area.transform.localPosition = new Vector3(0.0f, 0.0f, (collider.size.z + attack_area.transform.localScale.z) / 2.0f);
+		if (current_attack != null)
+			current_attack.update_cooldown();
 	}
 	
 	protected virtual void update_direction(float new_direction)
@@ -149,12 +155,24 @@ public class Character : MonoBehaviour
 	
 	protected virtual bool can_attack()
 	{
-		return is_attacking == false && is_attack_on_cooldown() == false && get_valid_attack_targets().Count > 0;
+		if (is_attack_on_cooldown() == true) 
+			return false;
+		foreach (Attack attack in attacks)
+		{
+			if (get_valid_attack_targets(attack).Count > 0)
+				return true;
+		}
+		return false;
+	}
+	
+	protected virtual bool can_move()
+	{
+		return current_attack == null || current_attack.is_on_cooldown() == true; // podczas ataku nie można się ruszać, ale można się obracać
 	}
 	
 	protected virtual bool is_attack_on_cooldown()
 	{
-		return current_attack_cooldown > 0.0f;
+		return current_attack != null;
 	}
 	
 	protected float get_health_percentage()
@@ -162,7 +180,7 @@ public class Character : MonoBehaviour
 		return (float)(current_health) / (float)(max_health);
 	}
 	
-	protected List<GameObject> get_valid_attack_targets()
+	protected List<GameObject> get_valid_attack_targets(Attack attack)
 	{
 		List<GameObject> targets = new List<GameObject>();
 		Collider[] attack_area_colliders = Physics.OverlapBox(attack_area.transform.position, attack_area.transform.lossyScale / 2.0f, Quaternion.identity);

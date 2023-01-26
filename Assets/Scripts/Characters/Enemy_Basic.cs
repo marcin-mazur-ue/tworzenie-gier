@@ -12,20 +12,35 @@ public class Enemy_Basic : Character
 	protected override void initialize()
 	{
 		base.initialize();
+		update_attack_area(attacks[0]);
 		player_position = FindObjectOfType<Player>().GetComponent<Transform>();
 		agent = GetComponent<NavMeshAgent>();
 		speed *= Random.Range(min_speed_percentage, max_speed_percentage);
 		agent.speed = speed;
 	}
 	
+	protected override void add_attacks()
+	{
+		attacks = new Attack[]
+		{
+			new Attack(20, 0.35f, 1.5f, 1.0f, 1000)
+		};
+	}
+	
 	protected override void fixed_update()
 	{
 		base.fixed_update();
-		if (!animator_controller.GetBool("isMoving"))
-			animator_controller.SetBool("isMoving", true);
-		agent.destination = player_position.position;
-		Vector3 movement_vector = player_position.position - transform.position;
-		update_direction(normalize(movement_vector.z));
+		if (can_move() == true)
+		{
+			if (animator_controller.GetBool("isMoving") == false)
+				animator_controller.SetBool("isMoving", true);
+			move(player_position.position);
+		}
+		else
+		{
+			animator_controller.SetBool("isMoving", false);
+			move(transform.position);
+		}
 	}
 	
 	protected override void update()
@@ -34,7 +49,7 @@ public class Enemy_Basic : Character
 		if (can_attack() == true)
 		{
 			animator_controller.SetTrigger("TrAttack");
-			attack();
+			attack(0);
 		}
 	}
 	protected override void flip()
@@ -49,12 +64,9 @@ public class Enemy_Basic : Character
 		Destroy(gameObject);
 	}
 	
-	private float normalize(float value) //zwraca -1 dla ujemnych wartości, 1 dla dodatnich, lub niezmienione 0
+	protected override void move(Vector3 movement_vector)
 	{
-		value /= Mathf.Abs(value);
-		if (float.IsNaN(value))
-			return 0.0f;
-		else
-			return value;
+		update_direction(movement_vector.z - transform.position.z);
+		agent.destination = movement_vector;
 	}
 }
