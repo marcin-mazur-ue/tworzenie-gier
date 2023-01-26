@@ -95,19 +95,21 @@ public class Character : MonoBehaviour
 	
 	protected IEnumerator delayed_attack() 
 	{
-		current_attack.start();
+		Attack attack_to_execute = current_attack;
+		attack_to_execute.start();
 		attack_area.gameObject.SetActive(true);
-		update_attack_area(current_attack);
-		yield return new WaitForSeconds(current_attack.get_windup_time());
-		List<GameObject> targets = get_valid_attack_targets(current_attack);
+		update_attack_area(attack_to_execute);
+		yield return new WaitForSeconds(attack_to_execute.get_windup_time());
+		List<GameObject> targets = get_valid_attack_targets(attack_to_execute);
 		foreach (GameObject target in targets)
 		{
-			target.GetComponent<Character>().receive_damage(current_attack.get_damage_dealt());
-			target.GetComponent<Character>().suffer_knockback(current_attack.get_knockback_strength(), transform.forward);
+			target.GetComponent<Character>().receive_damage(attack_to_execute.get_damage_dealt());
+			target.GetComponent<Character>().suffer_knockback(attack_to_execute.get_knockback_strength(), transform.forward);
 		}
 		attack_area.gameObject.SetActive(false);
-		yield return new WaitForSeconds(current_attack.get_cooldown());
-		current_attack = null;
+		yield return new WaitForSeconds(attack_to_execute.get_cooldown());
+		if (current_attack == attack_to_execute) // fałsz tylko w trakcie kombinacji ataków, gdzie current_attack może zostać nadpisane przez następny w kolejności
+			current_attack = null;
 	}
 	
 	protected virtual void die()
@@ -155,7 +157,7 @@ public class Character : MonoBehaviour
 	
 	protected virtual bool can_attack()
 	{
-		if (is_attack_on_cooldown() == true) 
+		if (current_attack != null) 
 			return false;
 		foreach (Attack attack in attacks)
 		{
@@ -172,7 +174,7 @@ public class Character : MonoBehaviour
 	
 	protected virtual bool is_attack_on_cooldown()
 	{
-		return current_attack != null;
+		return current_attack != null && (current_attack.is_on_cooldown() == true);
 	}
 	
 	protected float get_health_percentage()

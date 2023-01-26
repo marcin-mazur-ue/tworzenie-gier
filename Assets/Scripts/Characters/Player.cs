@@ -21,8 +21,11 @@ public class Player : Character
 	{
 		attacks = new Attack[]
 		{
-			new Attack(20, 0.4f, 1.0f, 2.5f, 40000),
-			new Attack(30, 0.55f, 1.5f, 3.0f, 70000)
+			new Attack(20, 0.6f, 0.6f, 2.0f, 40000),	// Podstawowy	- Szybki
+			new Attack(30, 0.9f, 0.8f, 3.0f, 70000),	// Podstawowy	- Silny
+			new Attack(20, 0.4f, 0.6f, 2.0f, 30000),	// Combo	- Szybki + Szybki
+			new Attack(30, 0.5f, 0.8f, 4.0f, 90000),	// Combo	- Szybki + Silny
+			new Attack(60, 1.1f, 0.8f, 4.0f, 120000)	// Combo	- Silny + Silny
 		};
 	}
 	
@@ -39,17 +42,38 @@ public class Player : Character
 	protected override void update()
 	{
 		base.update();
-		if (can_attack() == true)
+		if (can_attack() == false)
+			return;
+		
+		if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Z)) // Szybki
 		{
-			if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Z)) 
+			if (current_attack == null)
 			{
-				animator_controller.SetTrigger("Trigger_Attack_Fast");
+				animator_controller.SetTrigger("Trigger_Attack_Basic_Fast");
 				attack(0);
 			}
-			else if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.X)) 
+			else if (current_attack == attacks[0])
 			{
-				animator_controller.SetTrigger("Trigger_Attack_Strong");
+				animator_controller.SetTrigger("Trigger_Attack_Combo_Fast_Fast");
+				attack(2);
+			}
+		}
+		else if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.X)) // Silny
+		{
+			if (current_attack == null)
+			{
+				animator_controller.SetTrigger("Trigger_Attack_Basic_Strong");
 				attack(1);
+			}
+			else if (current_attack == attacks[0])
+			{
+				animator_controller.SetTrigger("Trigger_Attack_Combo_Fast_Strong");
+				attack(3);
+			}
+			else if (current_attack == attacks[1])
+			{
+				animator_controller.SetTrigger("Trigger_Attack_Combo_Strong_Strong");
+				attack(4);
 			}
 		}
 	}
@@ -93,6 +117,6 @@ public class Player : Character
 	
 	protected override bool can_attack()
 	{
-		return is_attack_on_cooldown() == false;
+		return current_attack == null || (is_attack_on_cooldown() == true);
 	}
 }
