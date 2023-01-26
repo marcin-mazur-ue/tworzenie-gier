@@ -21,7 +21,8 @@ public class Player : Character
 	{
 		attacks = new Attack[]
 		{
-			new Attack(20, 0.4f, 1.0f, 2.5f, 40000)
+			new Attack(20, 0.4f, 1.0f, 2.5f, 40000),
+			new Attack(30, 0.55f, 1.5f, 3.0f, 70000)
 		};
 	}
 	
@@ -38,10 +39,18 @@ public class Player : Character
 	protected override void update()
 	{
 		base.update();
-		if (Input.GetKeyDown(KeyCode.LeftControl) && can_attack() == true) 
+		if (can_attack() == true)
 		{
-			animator_controller.SetTrigger("TrAttack"); //Ró¿ne ataki bêd¹ ró¿nymi triggerami
-			attack(0);
+			if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Z)) 
+			{
+				animator_controller.SetTrigger("Trigger_Attack_Fast");
+				attack(0);
+			}
+			else if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.X)) 
+			{
+				animator_controller.SetTrigger("Trigger_Attack_Strong");
+				attack(1);
+			}
 		}
 	}
 	
