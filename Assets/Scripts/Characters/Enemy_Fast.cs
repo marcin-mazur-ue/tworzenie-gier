@@ -10,4 +10,9 @@ public class Enemy_Fast : Enemy_Basic
 			new Attack(10, 0.175f, 0.75f, 1.5f, 800)
 		};
 	}
+	
+	protected override bool can_move()
+	{
+		return true;
+	}
 }
