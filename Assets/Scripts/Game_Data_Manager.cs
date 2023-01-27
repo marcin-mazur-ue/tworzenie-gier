@@ -116,7 +116,7 @@ public class Game_Data_Manager : MonoBehaviour
 			instance.data.stars_gained[index, 1] = true;
 		if (star_gained_damage == true)
 			instance.data.stars_gained[index, 2] = true;
-		increase_achievement_progress(1, get_stars_gained_amount(index) - stars_gained_on_this_level);
+		set_achievement_progress(1, get_stars_gained_amount(index));
 		increase_achievement_progress(2, get_total_stars_gained_amount() - stars_gained);
 	}
 	
