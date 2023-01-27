@@ -35,6 +35,13 @@ public class Game_Data_Manager : MonoBehaviour
 		return instance.data.stars_gained[level_index, star_index];
 	}
 	
+	public static bool is_level_unlocked(int level_index)
+	{
+		if (level_index == 0)
+			return true;
+		return instance.data.levels_unlocked[level_index - 1];
+	}
+	
 	public static string get_achievement_name(int achievement_index)
 	{
 		return instance.data.achievements[achievement_index].name;
@@ -129,7 +136,7 @@ public class Game_Data
 {
 	public const int levels_amount = 3;
 	public const int stars_per_level = 3;
-	public const int weapons_amount = 3;
+	public const int weapons_amount = 1;
 	public const int achievements_amount = 6;
 	
 	public bool[] levels_unlocked = new bool[levels_amount - 1]; // pierwszy poziom jest zawsze odblokowany, więc levels_unlocked[0] oznacza drugi, levels_unlocked[1] trzeci itd.
