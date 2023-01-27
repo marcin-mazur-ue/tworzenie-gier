@@ -9,8 +9,9 @@ public class Main_Menu : MonoBehaviour
 	[SerializeField] private GameObject load_panel;
 	[SerializeField] private GameObject achievements_panel;
 	[SerializeField] private GameObject settings_panel;
-	
-	[SerializeField] private Toggle fullscreen_toggle;
+    [SerializeField] private GameObject credits_panel;
+
+    [SerializeField] private Toggle fullscreen_toggle;
 	[SerializeField] private Toggle vsync_toggle;
 	[SerializeField] private Dropdown resolutions_dropdown;
 	
@@ -65,7 +66,8 @@ public class Main_Menu : MonoBehaviour
 		load_panel.SetActive(false);
 		achievements_panel.SetActive(false);
 		settings_panel.SetActive(false);
-	}
+        credits_panel.SetActive(false);
+    }
 	
 	public void show_saved_games()
 	{
@@ -73,7 +75,8 @@ public class Main_Menu : MonoBehaviour
 		load_panel.SetActive(true);
 		achievements_panel.SetActive(false);
 		settings_panel.SetActive(false);
-	}
+        credits_panel.SetActive(false);
+    }
 	
 	public void show_achievements()
 	{
@@ -81,7 +84,8 @@ public class Main_Menu : MonoBehaviour
 		load_panel.SetActive(false);
 		achievements_panel.SetActive(true);
 		settings_panel.SetActive(false);
-	}
+        credits_panel.SetActive(false);
+    }
 	
 	public void show_settings()
 	{
@@ -89,9 +93,19 @@ public class Main_Menu : MonoBehaviour
 		load_panel.SetActive(false);
 		achievements_panel.SetActive(false);
 		settings_panel.SetActive(true);
-	}
-	
-	public void quit()
+        credits_panel.SetActive(false);
+    }
+
+    public void show_credits()
+    {
+        main_panel.SetActive(false);
+        load_panel.SetActive(false);
+        achievements_panel.SetActive(false);
+        settings_panel.SetActive(false);
+        credits_panel.SetActive(true);
+    }
+
+    public void quit()
 	{
 		Application.Quit();
 	}
