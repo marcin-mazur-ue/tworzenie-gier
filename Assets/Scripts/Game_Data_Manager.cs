@@ -157,12 +157,12 @@ public class Game_Data
 			weapons_unlocked[i] = false;
 		achievements = new Achievement[]
 		{
-			new Achievement("", "Ukończ wszystkie poziomy w grze.", 0, levels_amount),
-			new Achievement("", "Zdobądź wszystkie gwiazdki na dowolnym poziomie.", 0, stars_per_level),
-			new Achievement("", "Zdobądź wszystkie gwiazdki na wszystkich poziomach.", 0, levels_amount * stars_per_level),
-			new Achievement("", "Ukończ dowolny poziom bez utraty zdrowia.", 0, 1),
-			new Achievement("", "Odblokuj każdą broń w grze.", 1, weapons_amount),
-			new Achievement("", "Pokonaj łącznie 100 przeciwników.", 0, 100)
+			new Achievement("Gra ukończona", "Ukończ wszystkie poziomy w grze.", 0, levels_amount),
+			new Achievement("Perfekcyjny poziom", "Zdobądź wszystkie gwiazdki na dowolnym poziomie.", 0, stars_per_level),
+			new Achievement("Perfekcyjna gra", "Zdobądź wszystkie gwiazdki na wszystkich poziomach.", 0, levels_amount * stars_per_level),
+			new Achievement("Pełne zdrowie", "Ukończ dowolny poziom bez utraty zdrowia.", 0, 1),
+			new Achievement("Wszystkie bronie", "Odblokuj każdą broń w grze.", 1, weapons_amount),
+			new Achievement("Pogromca zombie", "Pokonaj łącznie 100 przeciwników.", 0, 100)
 		};
 	}
 	
@@ -228,6 +228,7 @@ public class Achievement
 		current_progress = starting_progress;
 		max_progress = _max_progress;
 		unlocked = false;
+		try_to_unlock();
 	}
 	
 	public void increase_progress(int amount)
