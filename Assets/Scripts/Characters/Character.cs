@@ -84,7 +84,7 @@ public class Character : MonoBehaviour
 	
 	public virtual void suffer_knockback(int force, Vector3 direction)
 	{
-		rb.AddForce(direction * force);
+		rb.AddForce(direction * force, ForceMode.Force);
 	}
 	
 	protected virtual void attack(int attack_index)

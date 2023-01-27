@@ -7,7 +7,7 @@ public class Enemy_Strong : Enemy_Basic
 	{
 		attacks = new Attack[]
 		{
-			new Attack(50, 0.55f, 3.0f, 0.8f, 4000)
+			new Attack(50, 0.55f, 3.0f, 0.8f, 120)
 		};
 	}
 }

@@ -21,11 +21,11 @@ public class Player : Character
 	{
 		attacks = new Attack[]
 		{
-			new Attack(20, 0.6f, 0.6f, 2.0f, 40000),	// Podstawowy	- Szybki
-			new Attack(30, 0.9f, 0.8f, 3.0f, 70000),	// Podstawowy	- Silny
-			new Attack(20, 0.4f, 0.6f, 2.0f, 30000),	// Combo	- Szybki + Szybki
-			new Attack(30, 0.5f, 0.8f, 4.0f, 90000),	// Combo	- Szybki + Silny
-			new Attack(60, 1.1f, 0.8f, 4.0f, 120000)	// Combo	- Silny + Silny
+			new Attack(20, 0.6f, 0.6f, 2.0f, 30000),	// Podstawowy	- Szybki
+			new Attack(30, 0.9f, 0.8f, 3.0f, 60000),	// Podstawowy	- Silny
+			new Attack(20, 0.4f, 0.6f, 2.0f, 25000),	// Combo	- Szybki + Szybki
+			new Attack(30, 0.5f, 0.8f, 4.0f, 80000),	// Combo	- Szybki + Silny
+			new Attack(60, 1.1f, 0.8f, 4.0f, 100000)	// Combo	- Silny + Silny
 		};
 	}
 	
